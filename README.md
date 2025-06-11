@@ -21,11 +21,7 @@ gente, aqui eu vou colocar explicadinho o que eu fiz:
     - na pasta imagens eu adicionei imagens .png q eu mesma desenhei em pixel arte, esta inclusive faltando imagens de alguns ingredientes como:  oil.png, coal.png e bonemeal.png, ent quem for mexer a seguir e tive vontade de desenhar, acho que ficaria bem legal, no grupo do wpp vou mandar o .piskell q é uma ferramenta muito legal GRATUITA E ONLINE  (e boa, oq eh quase impossivel hj em dia), entao use e abusem, voces conseguem salvar esse .piskel e abrir eles clicando em um icone de import, vcs tbm conseguem exportar imagens, eu estava exportando na escala 768x768 (mas a pixel art em si é de 32x32), por favor sigam o mesmo padrao
     - fiz o carregamento do arquivo pega interface, ent vcs precisam selecionar a opcao correta de automato
     - eu estou utilizando um pouco da logica do codigo da rafa, no entanto nem tudo está funcionando 100% na interface, alguns problemas q identifiquei:
-    - meu codigo ta lendo de um arquivo .txt fixo, mas seria mais interessante adicionar a posibilidade de colocar o nome do arquivo
-    - algumas misturas vaidas estao aparecendo um alerta de sequencia invalida (masss acho q isso nao é um erro, e pode ser por conta do arquivo de entrada)
     - as mensagens ao finalizar pocoes precisam ser revisadas pra ver se está certinho, principalmente se for adicionar mais uma combinacao de poção e tals
-
-    - precisa adicionar imagens para as pocoes produzidas, eu ja fiz o mix1, q é pra pocao de restauracao, mas precisa adicionar na interface
 
 - pra compilar precisa rodar o interface.py, e é importante >nao< chamar a funcao rodar nos outros arquivos afd.py e aut_pilha.py  ao mesmo tempo
 - tbm adicionei um caso de teste extra q aceita so a pocao de forca q é "f s c"
