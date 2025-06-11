@@ -14,7 +14,7 @@ INGREDIENTES = [
     {"nome": "Água", "simbolo": "a", "img": "imagens/water.png"},
     {"nome": "Pétalas", "simbolo": "p", "img": "imagens/petals.png"},
     {"nome": "Óleo", "simbolo": "o", "img": "imagens/oil.png"},
-    {"nome": "Farelo", "simbolo": "f", "img": "imagens/bran.png"},
+    {"nome": "Farelo", "simbolo": "f", "img": "imagens/bonemeal.png"},
     {"nome": "Sangue", "simbolo": "s", "img": "imagens/blood.png"},
     {"nome": "Carvão", "simbolo": "c", "img": "imagens/coal.png"},
 ]
@@ -286,16 +286,24 @@ class MainWindow(QMainWindow):
                         f"Ingredientes: {' '.join(self.poção_atual)}")
             elif self.poção_atual == ['a', 'p', 's']:
                 poção = "Poção de Cura Avançada"
-                QMessageBox.information(self, "Mistura Válida",
-                    f"✅ Mistura válida!\n\n" +
-                    f"Tipo de Poção: {poção}\n" +
-                    f"Ingredientes: {' '.join(self.poção_atual)}")
+                # Mostra a imagem mix3.png
+                if os.path.exists("imagens/mix3.png"):
+                    msg_box = QMessageBox(self)
+                    msg_box.setWindowTitle("Mistura Válida")
+                    msg_box.setText(f"✅ Mistura válida!\n\nTipo de Poção: {poção}\nIngredientes: {' '.join(self.poção_atual)}")
+                    pixmap = QPixmap("imagens/mix3.png").scaled(200, 200, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+                    msg_box.setIconPixmap(pixmap)
+                    msg_box.exec_()
             elif self.poção_atual == ['f', 's', 'c']:
                 poção = "Poção de Força"
-                QMessageBox.information(self, "Mistura Válida",
-                    f"✅ Mistura válida!\n\n" +
-                    f"Tipo de Poção: {poção}\n" +
-                    f"Ingredientes: {' '.join(self.poção_atual)}")
+                # Mostra a imagem mix2.png
+                if os.path.exists("imagens/mix2.png"):
+                    msg_box = QMessageBox(self)
+                    msg_box.setWindowTitle("Mistura Válida")
+                    msg_box.setText(f"✅ Mistura válida!\n\nTipo de Poção: {poção}\nIngredientes: {' '.join(self.poção_atual)}")
+                    pixmap = QPixmap("imagens/mix2.png").scaled(200, 200, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+                    msg_box.setIconPixmap(pixmap)
+                    msg_box.exec_()
             else:
                 poção = "Poção Desconhecida"
                 QMessageBox.information(self, "Mistura Válida",
