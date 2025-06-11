@@ -1,0 +1,10 @@
+ Q: I ing1 ing2 F erro
+I: I
+F: F
+I -> ing1    | f
+ing1 -> ing2 | s
+ing2 -> F    | c
+ing1 -> erro | a o p
+ing2 -> erro | a o p
+F -> erro    | a f s c o p
+---
