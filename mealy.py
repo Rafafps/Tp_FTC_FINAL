@@ -33,15 +33,8 @@ class Mealy:
 
     def executar(self):
         os.system("cls" if os.name == "nt" else "clear")
-        print(Cor.AZUL + r"""
- __  __             _           
-|  \/  | ___  _ __ (_) ___  ___ 
-| |\/| |/ _ \| '_ \| |/ _ \/ __|
-| |  | | (_) | | | | |  __/\__ \
-|_|  |_|\___/|_| |_|_|\___||___/       
-        """ + Cor.RESET)
 
-        print(Cor.NEGRITO + "\n🧙 MÁQUINA MEALY: Vestindo o Maguinho!\n" + Cor.RESET)
+        print(Cor.NEGRITO + "\n🧙 MÁQUINA MEALY: Vestindo o Mago!\n" + Cor.RESET)
         print("-" * 50)
         print("Ingredientes disponíveis:")
         print(" c → Capa mágica")
