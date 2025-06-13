@@ -34,5 +34,3 @@ F -> erro | b:❌ Item extra: Botas não aceitas após transformação
 F -> erro | o:❌ Item extra: Olhos não aceitos após transformação
 F -> erro | l:❌ Item extra: Luvas não aceitas após transformação
 F -> erro | coroa:❌ Item extra: Coroa não aceita após transformação
-
----
