@@ -1,0 +1,11 @@
+Q: I caldo macarrao cobertura ovo erro F
+I: I
+F: F
+O: I:Panela aquecida caldo:Caldo adicionado 🍲 macarrao:Macarrão cozinhando 🍜 cobertura:Adicionando toppings 🧅 ovo:Ovo pochê inserido 🥚 erro:Erro F:Lámen pronto para servir ✅
+I -> caldo | c
+caldo -> macarrao | m
+macarrao -> cobertura | t
+cobertura -> ovo | o
+ovo -> F | a
+F -> erro | x z
+---
