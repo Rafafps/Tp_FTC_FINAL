@@ -8,97 +8,85 @@ class Cor:
     NEGRITO = '\033[1m'
     RESET = '\033[0m'
 
-class MaquinaDeMoore:
-    def __init__(self, caminho_arquivo):
-        self.estados = set()
-        self.estado_inicial = ""
-        self.estado_final = ""
-        self.estado_erro = "erro"
+class Moore:
+    def __init__(self, arquivo_entrada):
         self.transicoes = {}
-        self.saidas = {}
-        self.carregar_moore(caminho_arquivo)
+        self.saidas = {
+            "I": "🔲 Mistura vazia, caldeirão pronto para uso.",
+            "M1": "🧪 Um brilho leve surge da mistura...",
+            "M2": "✨ A poção borbulha suavemente e exala aroma doce.",
+            "M3": "🌈 A mistura flutua e cintila com cores mágicas!",
+            "F_bolo": "🎂 Você criou um Bolo Místico!",
+            "F_cha": "🍵 Você preparou um Chá Mágico!",
+            "F_sorvete": "🍨 Você invocou um Sorvete dos Sonhos!",
+            "F_pizza": "🍕 Você assou uma Pizza de Magma!",
+            "F_sopa": "🥣 Você cozinhou uma Sopa Encantada!",
+            "erro": "💥 Explosão de sabores descontrolados!"
+        }
+        self.carregar(arquivo_entrada)
+        self.estado_atual = self.estado_inicial
 
-    def carregar_moore(self, caminho_arquivo):
-        with open(caminho_arquivo, 'r', encoding='utf-8') as f:
+    def carregar(self, caminho):
+        with open(caminho, 'r', encoding='utf-8') as f:
             linhas = [linha.strip() for linha in f if linha.strip()]
-
-
-        self.estados = set(linhas[0][3:].split())
+        
+        self.estados = linhas[0].split(":")[1].strip().split()
         self.estado_inicial = linhas[1].split(":")[1].strip()
-        self.estado_final = linhas[2].split(":")[1].strip()
-        self.saidas = {}
-        saida_raw = linhas[3][2:].split()
-        estado_atual = None
-
-        for item in saida_raw:
-            if ':' in item:
-                estado, valor = item.split(":", 1)
-                estado_atual = estado
-                self.saidas[estado] = valor
-            else:
-                # Continua a saída anterior (caso contenha espaços ou emojis)
-                if estado_atual:
-                    self.saidas[estado_atual] += " " + item
-
-
-        for linha in linhas[4:]:
+        self.estado_final = linhas[2].split(":")[1].strip()  # Um dos finais, mas aceitamos vários
+        for linha in linhas[3:]:
             if linha == "---":
                 break
             origem, resto = linha.split("->")
-            destino, simbolos = resto.split("|")
-            origem = origem.strip()
-            destino = destino.strip()
+            destino, simbolos = resto.strip().split("|")
             simbolos = simbolos.strip().split()
             for simbolo in simbolos:
-                self.transicoes[(origem, simbolo)] = destino
+                self.transicoes[(origem.strip(), simbolo.strip())] = destino.strip()
 
     def executar(self):
         os.system("cls" if os.name == "nt" else "clear")
-        print(Cor.AZUL + r"""
-╭──────────────────────────────────────────╮
-│ 🍜 MÁQUINA DE MOORE - LÁMEN GOURMET 🍜  │
-╰──────────────────────────────────────────╯
-""" + Cor.RESET)
+        print(Cor.NEGRITO + "\n🍳 MÁQUINA DE MOORE: Cozinha Encantada!\n" + Cor.RESET)
+        print("-" * 50)
+        print("Ingredientes mágicos disponíveis:")
+        print(" p → Pétalas de Fênix")
+        print(" e → Essência de Gelo")
+        print(" n → Néctar de Estrela")
+        print(" f → Poeira de Fada")
+        print(" c → Cristal de Maná")
+        print(" l → Lágrima de Dragão")
+        print("-" * 50)
 
-        estado_atual = self.estado_inicial
-        ingredientes = []
+        print(Cor.AMARELO + f"\n{self.saidas[self.estado_atual]}" + Cor.RESET)
 
-        while True:
-            saida = self.saidas.get(estado_atual, 'sem efeito')
-            print(f"\n{Cor.NEGRITO}📍 Estado atual: {Cor.AZUL}{estado_atual}{Cor.RESET} → {Cor.VERDE}{saida}{Cor.RESET}")
-            simbolo = input("🧾 Ingrediente (c, m, t, o, a): ").strip().lower()
-            ingredientes.append(simbolo)
+        while self.estado_atual != "erro":
+            ingrediente = input("\n🧾 Adicione um ingrediente mágico: ").strip()
+            chave = (self.estado_atual, ingrediente)
 
-            proximo_estado = self.transicoes.get((estado_atual, simbolo), self.estado_erro)
-            print(f"➡️  Transição: ({estado_atual}, '{simbolo}') → {proximo_estado}")
-            estado_atual = proximo_estado
-
-            if estado_atual == self.estado_erro:
-                print(Cor.VERMELHO + "\n❌ Erro na mistura!" + Cor.RESET)
+            if chave not in self.transicoes:
+                print(Cor.VERMELHO + "❌ Transição inválida!" + Cor.RESET)
+                self.estado_atual = "erro"
                 break
 
-            continuar = input("➕ Deseja inserir mais um ingrediente (s/n)? ").strip().lower()
+            self.estado_atual = self.transicoes[chave]
+            print(Cor.AZUL + f"\n📍 Novo estado: {self.estado_atual}" + Cor.RESET)
+            print(Cor.AMARELO + f"{self.saidas.get(self.estado_atual, '')}" + Cor.RESET)
+
+            # Aqui detecta se chegou a um estado final e encerra
+            if self.estado_atual.startswith("F_"):
+                print(Cor.VERDE + "\n✅ Receita concluída com sucesso!" + Cor.RESET)
+                break
+
+            # Caso não tenha finalizado ainda, pergunta se deseja continuar
+            continuar = input("➕ Adicionar outro ingrediente? (s/n): ").lower()
             if continuar != 's':
                 break
 
-        print(Cor.NEGRITO + "\n🧪 Resultado Final:" + Cor.RESET)
-        print(Cor.AZUL + "📜 Ingredientes usados: " + ', '.join(ingredientes) + Cor.RESET)
-        print(Cor.VERDE + f"📍 Estado final: {estado_atual}" + Cor.RESET)
-        print(Cor.VERDE + f"🔊 Efeito: {self.saidas.get(estado_atual, 'desconhecido')}" + Cor.RESET)
 
-        if estado_atual == self.estado_final:
-            print(Cor.VERDE + "\n✅ Lámen preparado com sucesso!" + Cor.RESET)
-        else:
-            print(Cor.VERMELHO + "\n❌ Receita incompleta ou inválida!" + Cor.RESET)
-
+        if self.estado_atual == "erro":
+            print(Cor.VERMELHO + "\n💥 A receita falhou! O caldeirão explodiu!" + Cor.RESET)
 
 def rodar():
-    moore = MaquinaDeMoore("entrada_moore.txt")
-    moore.executar()
+    maquina = Moore("entrada_moore.txt")
+    maquina.executar()   
 
-
-if os.path.exists("entrada_moore.txt"):
+if __name__ == "__main__":
     rodar()
-else:
-    print(Cor.VERMELHO + "❌ Arquivo 'entrada_moore.txt' não encontrado!" + Cor.RESET)
-
