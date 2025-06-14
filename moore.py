@@ -7,6 +7,7 @@ class Cor:
     VERMELHO = '\033[91m'
     NEGRITO = '\033[1m'
     RESET = '\033[0m'
+    ROXO = '\033[95m'
 
 class Moore:
     def __init__(self, arquivo_entrada):
@@ -45,8 +46,12 @@ class Moore:
 
     def executar(self):
         os.system("cls" if os.name == "nt" else "clear")
-        print(Cor.NEGRITO + "\n🍳 MÁQUINA DE MOORE: Cozinha Encantada!\n" + Cor.RESET)
-        print("-" * 50)
+        print(Cor.ROXO + """
+╭──────────────────────────────────────────────────╮
+│ """ + Cor.NEGRITO + Cor.AMARELO + "✨🍳 MÁQUINA DE MOORE: A Cozinha Encantada! 🍲✨" + Cor.ROXO + """ │
+╰──────────────────────────────────────────────────╯
+""" + Cor.RESET)
+
         print(Cor.AMARELO + f"\n{self.saidas[self.estado_atual]}" + Cor.RESET)
 
         ultimo_ingrediente = ""
@@ -91,13 +96,17 @@ class Moore:
             print(Cor.VERMELHO + "\n❌ Mistura incompleta! A receita não pôde ser finalizada." + Cor.RESET)
 
     def exibir_ingredientes(self):
-        print("\n📦 Ingredientes mágicos disponíveis:")
-        print(" p → Pétalas de Fênix")
-        print(" e → Essência de Gelo")
-        print(" n → Néctar de Estrela")
-        print(" f → Poeira de Fada")
-        print(" c → Cristal de Maná")
-        print(" l → Lágrima de Dragão")
+        print("\n" + Cor.AMARELO + "-" * 50 + Cor.RESET)
+        print(Cor.AMARELO+ "📦 Ingredientes mágicos disponíveis:" + Cor.RESET)
+        print(f" {Cor.VERDE}p{Cor.RESET} {Cor.AZUL}→{Cor.RESET} {Cor.ROXO}Pétalas de Fênix{Cor.RESET}")
+        print(f" {Cor.VERDE}e{Cor.RESET} {Cor.AZUL}→{Cor.RESET} {Cor.AZUL}Essência de Gelo{Cor.RESET}")
+        print(f" {Cor.VERDE}n{Cor.RESET} {Cor.AZUL}→{Cor.RESET} {Cor.ROXO}Néctar de Estrela{Cor.RESET}")
+        print(f" {Cor.VERDE}f{Cor.RESET} {Cor.AZUL}→{Cor.RESET} {Cor.AZUL}Poeira de Fada{Cor.RESET}")
+        print(f" {Cor.VERDE}c{Cor.RESET} {Cor.AZUL}→{Cor.RESET} {Cor.ROXO}Cristal de Maná{Cor.RESET}")
+        print(f" {Cor.VERDE}l{Cor.RESET} {Cor.AZUL}→{Cor.RESET} {Cor.AZUL}Lágrima de Dragão{Cor.RESET}")
+        print(Cor.AMARELO + "-" * 50 + Cor.RESET)
+
+
 
 def rodar():
     maquina = Moore("entrada_moore.txt")
