@@ -42,12 +42,11 @@ class AFD:
 
     def mostrar_ascii(self):
         print(Cor.AZUL + r"""
-  ____        _         _           
- |  _ \  __ _| |_ _   _| | ___  ___ 
- | | | |/ _` | __| | | | |/ _ \/ __|
- | |_| | (_| | |_| |_| | |  __/\__ \
- |____/ \__,_|\__|\__, |_|\___||___/
-                 |___/              
+     ____       _ _     _              
+    |  _ \ __ _(_) | __| | ___ _ __  _   _ 
+    | |_) / _` | | |/ _` |/ _ \ '_ \| | | |
+    |  __/ (_| | | | (_| |  __/ | | | |_| |
+    |_|   \__,_|_|_|\__,_|\___|_| |_|\__,_|            
         """ + Cor.RESET)
 
     def mostrar_transicoes(self):
@@ -59,7 +58,7 @@ class AFD:
     def exibir_interface(self):
         os.system("cls" if os.name == "nt" else "clear")
         self.mostrar_ascii()
-        print(Cor.NEGRITO + "🧪  SIMULADOR DE PRODUÇÃO DE POÇÕES - AFD" + Cor.RESET)
+        print(Cor.NEGRITO + "🧪  SIMULADOR DE PRODUÇÃO DE POÇÕES - Poções Mágicas" + Cor.RESET)
         print("-" * 50)
         print("Ingredientes disponíveis:")
         print(" - a (água)")
@@ -92,11 +91,12 @@ class AFD:
             continuar = input("➕ Deseja inserir mais um ingrediente (s/n)? ").strip().lower()
             if continuar != 's':
                 if estado_atual == self.estado_final:
-                    print(Cor.VERDE + "\n✅ Poção de restauração comum criada com sucesso!" + Cor.RESET)
+                    print(Cor.VERDE + "\n✅ Mistura finalizada com sucesso!" + Cor.RESET)
+                    print('\033[5m' + '⚠️ Mistura instável!' + '\033[0m')
                 else:
                     print(Cor.VERMELHO + "\n❌ Erro na mistura: sequência incompleta ou inválida." + Cor.RESET)
                 break
 
-if __name__ == "__main__":
-    afd = AFD("afd_entrada.txt")
+def rodar():
+    afd = AFD("entrada.txt")
     afd.executar()

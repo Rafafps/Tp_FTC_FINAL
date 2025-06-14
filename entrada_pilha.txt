@@ -1,0 +1,15 @@
+Q: I f s c a p erro F
+I: I
+F: F
+I -> f    | f
+I -> s    | s
+I -> c    | c
+I -> a    | a
+I -> p    | p
+f -> s    | s
+s -> c    | c
+c -> a    | a
+a -> p    | p
+p -> F    | p
+F -> erro | o
+---

@@ -1,0 +1,36 @@
+Q: I S1 S2 S3 F erro
+I: I
+F: F
+I   -> S1 | c:🧥 Capa das Sombras vestida
+I   -> S1 | b:👢 Botas Assustadoras equipadas
+I   -> S1 | t:👕 Túnica Arcana ativada
+I   -> S1 | o:👁️ Olhos de Vampiro surgem
+I   -> S1 | l:🧤 Luvas Lunares equipadas
+I   -> S1 | coroa:👑 Coroa Encantada brilha
+
+S1  -> S2 | t:👕 Túnica Arcana ativada
+S1  -> S2 | b:👢 Botas Assustadoras equipadas
+S1  -> S2 | o:👁️ Olhos de Vampiro surgem
+S1  -> S2 | l:🧤 Luvas Lunares equipadas
+S1  -> S2 | c:🧥 Capa das Sombras vestida
+S1  -> S2 | coroa:👑 Coroa Encantada brilha
+
+S2  -> S3 | l:🧤 Luvas Lunares equipadas
+S2  -> S3 | o:👁️ Olhos de Vampiro surgem
+S2  -> S3 | b:👢 Botas Assustadoras equipadas
+S2  -> S3 | c:🧥 Capa das Sombras vestida
+S2  -> S3 | coroa:👑 Coroa Encantada brilha
+
+S3  -> F | c:🧙 Você se tornou um Mago!
+S3  -> F | o:🦇 Você virou um Vampiro!
+S3  -> F | l:🐺 Você se tornou um Lobisomem!
+S3  -> F | b:👺 Você se transformou num Goblin!
+S3  -> F | coroa:👑 Você virou um Rei Mago!
+S3  -> F | t:🧞 Você se tornou um Djinn!
+
+F -> erro | c:❌ Item extra: Capa não aceita após transformação
+F -> erro | t:❌ Item extra: Túnica não aceita após transformação
+F -> erro | b:❌ Item extra: Botas não aceitas após transformação
+F -> erro | o:❌ Item extra: Olhos não aceitos após transformação
+F -> erro | l:❌ Item extra: Luvas não aceitas após transformação
+F -> erro | coroa:❌ Item extra: Coroa não aceita após transformação

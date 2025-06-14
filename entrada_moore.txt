@@ -1,0 +1,20 @@
+Q: I M1 M2 M3 F_bolo F_cha F_sorvete F_pizza F_sopa erro
+I: I
+F: F_bolo
+I -> M1 | p e f n c l
+
+M1 -> M2 | p e f n c l
+M2 -> M3 | p e f n c l
+
+M3 -> F_bolo    | p
+M3 -> F_cha     | n
+M3 -> F_sorvete | e
+M3 -> F_pizza   | c
+M3 -> F_sopa    | l
+M3 -> erro      | f
+
+F_bolo    -> erro | p e f n c l
+F_cha     -> erro | p e f n c l
+F_sorvete -> erro | p e f n c l
+F_pizza   -> erro | p e f n c l
+F_sopa    -> erro | p e f n c l
