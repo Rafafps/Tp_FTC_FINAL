@@ -1,3 +1,11 @@
+RED = "\033[31m"
+GREEN = "\033[32m"
+YELLOW = "\033[33m"
+BLUE = "\033[34m"
+MAGENTA = "\033[35m"
+CYAN = "\033[36m"
+RESET = "\033[0m"
+
 class TuringPalindromoMagico:
     def __init__(self, fita):
         self.fita = list(fita) + ['_']  # Adiciona espaço branco ao final
@@ -7,10 +15,12 @@ class TuringPalindromoMagico:
     def mostrar_fita(self):
         fita_str = ''.join(self.fita)
         marcador = ' ' * self.pos + '^'
-        print(f"\nFita: {fita_str}\n      {marcador} (Estado: {self.estado})")
+        print(f"\n{MAGENTA}Fita:{RESET} {fita_str}\n      {marcador} (Estado: {self.estado})")
 
     def executar(self):
-        print("\n🎩✨ Iniciando o truque mágico de reconhecimento de palíndromo...\n")
+        print("\n" + CYAN + "✦✧" * 35)
+        print(MAGENTA + "🎩✨ Iniciando o truque mágico de reconhecimento de palíndromo... ✨🎩")
+        print(CYAN + "✦✧" * 35 + RESET +"\n")
 
         while True:
             self.mostrar_fita()
