@@ -14,6 +14,7 @@ class AutomatoDePilha:
         self.mistura = []
         self.estado = None
         self.estado_final = None
+        self.estado_inicial = None
         self.estado_erro = "erro"
         self.estados = set()
         self.transicoes = {}
@@ -30,6 +31,7 @@ class AutomatoDePilha:
 
         self.estados = set(linhas[0][2:].strip().split())
         self.estado = linhas[1][2:].strip()
+        self.estado_inicial = self.estado
         self.estado_final = linhas[2][2:].strip()
 
         self.transicoes = {}

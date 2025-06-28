@@ -314,7 +314,7 @@ class MainWindow(QMainWindow):
 
         else:  # autômato de pilha
             # Validações específicas do APD
-            estado_atual = self.automato.estado
+            estado_atual = self.automato.estado_inicial
             pilha = []
             reacoes = []
 
